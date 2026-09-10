@@ -60,7 +60,7 @@ export const LINKS: readonly LinkItem[] = [
   },
   {
     id: "articles-audio",
-    title: "Audio Versions of Articles",
+    title: "Audio articles",
     description: "Every article read aloud — listen on the move.",
     caption: "Listen on the move",
     href: "https://t.me/+cZuuurXwBMRlNjYy",
