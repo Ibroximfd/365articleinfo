@@ -57,7 +57,7 @@ export function PlatformBadge({ platform }: { platform: LinkPlatform }) {
   const Glyph = GLYPHS[platform];
   return (
     <span
-      className="absolute -right-1 -bottom-1 grid size-6 place-items-center rounded-full bg-paper text-brass-deep shadow-[0_1px_4px_rgb(66_62_59_/_0.3)] ring-1 ring-hairline lg:size-7"
+      className="absolute -right-1 -bottom-1 grid size-6 place-items-center rounded-full bg-paper text-brass-deep shadow-[0_1px_4px_rgb(0_0_0_/_0.35)] ring-1 ring-hairline lg:size-7"
       aria-hidden
     >
       <Glyph className="size-3.5 lg:size-4" />

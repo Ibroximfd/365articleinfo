@@ -1,53 +1,50 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Articles 365 — five warm neutrals, applied as three surfaces plus ink and
-   brass. Light only by design: the page lives behind a QR code on a printed
-   book cover.
+   Articles 365 — white, gold, black. Light only by design: the page lives
+   behind a QR code on a printed book cover.
 
-   Off White #F6F4F2 · Warm Grey #D3C9BD · Muted Tan #AB9E8E
-   Antique Brass #B4986B · Dark Charcoal #423E3B
-
-   The four link tiles step from Off White to Warm Grey. That gradation — one
-   tonal ladder rather than four contrasting fills — is what keeps the page
-   quiet. Muted Tan never carries text (Dark Charcoal only reaches 4.0:1 on it);
-   it works as the hairline and the bloom in the ground, bridging Warm Grey to
-   Charcoal. Brass is the accent alone, at three depths: the palette value for
-   glow and rules, `brass-deep` for text (5.0:1 on Off White), `brass-mark` for
-   the logo, which needs weight to read against paper.
+   The gold is the logo's own (#FCBF01), used at two depths: bright on black,
+   where it is the glyph in every chip — the brand's original yellow-on-black —
+   and deepened to #D9A400 for the tiles, the emblem and the rules, where it
+   has to hold against white. Small gold TEXT goes one step further, to
+   #8A6600, which is the first gold that clears 4.5:1 on white. Everything
+   else is near-black; the four link tiles step through four golds, one tonal
+   ladder rather than four fills, so the row still reads as a set.
 --------------------------------------------------------------------------- */
 @theme {
-  --color-paper: #f6f4f2;
-  --color-linen: #eee9e1;
-  --color-sand: #e1dacf;
-  --color-grey: #d3c9bd;
-  --color-tan: #ab9e8e;
-  --color-ground: #e7e1d8;
+  --color-ground: #ffffff;
+  --color-paper: #ffffff;
 
-  --color-brass: #b4986b;
-  --color-brass-mark: #9c7f49;
-  --color-brass-deep: #7f6539;
+  --color-gold-1: #e6b41c;
+  --color-gold-2: #ddaa0e;
+  --color-gold-3: #d3a004;
+  --color-gold-4: #c89600;
 
-  --color-ink: #423e3b;
-  --color-ink-soft: #544e47;
-  --color-charcoal-lift: #4a4642;
+  --color-brass: #d9a400;
+  --color-gold-bright: #fcbf01;
+  --color-brass-deep: #8a6600;
+
+  --color-black: #0b0a09;
+  --color-black-lift: #1e1b18;
+  --color-ink: #141210;
+  --color-ink-soft: #33302b;
 
   --font-serif: var(--font-dm-serif), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
 
-  --color-hairline: rgba(171, 158, 142, 0.38);
+  --color-hairline: rgba(217, 164, 0, 0.38);
 
-  /* Shadows are tinted with Dark Charcoal, never neutral black — a grey shadow
-     under a warm tile is the tell that a palette was skinned on, not applied. */
-  --shadow-tile: inset 0 1px 0 rgb(255 255 255 / 0.62),
-    0 1px 2px rgb(66 62 59 / 0.04), 0 16px 34px -22px rgb(66 62 59 / 0.26);
-  --shadow-tile-hover: inset 0 1px 0 rgb(255 255 255 / 0.75),
-    0 2px 6px rgb(66 62 59 / 0.06), 0 26px 48px -22px rgb(127 101 57 / 0.34);
-  --shadow-dark: inset 0 1px 0 rgb(255 255 255 / 0.07),
-    0 1px 2px rgb(66 62 59 / 0.1), 0 18px 38px -22px rgb(66 62 59 / 0.45);
-  --shadow-chip: inset 0 1px 0 rgb(255 255 255 / 0.1),
-    0 3px 8px -3px rgb(66 62 59 / 0.42);
+  /* Shadows are tinted with the gold's own dark, never neutral black. */
+  --shadow-tile: inset 0 1px 0 rgb(255 255 255 / 0.55),
+    0 1px 2px rgb(90 65 0 / 0.06), 0 18px 36px -22px rgb(90 65 0 / 0.35);
+  --shadow-tile-hover: inset 0 1px 0 rgb(255 255 255 / 0.7),
+    0 2px 6px rgb(90 65 0 / 0.08), 0 28px 50px -22px rgb(90 65 0 / 0.42);
+  --shadow-dark: inset 0 1px 0 rgb(255 255 255 / 0.06),
+    0 1px 2px rgb(0 0 0 / 0.2), 0 18px 38px -22px rgb(0 0 0 / 0.55);
+  --shadow-chip: inset 0 1px 0 rgb(255 255 255 / 0.08),
+    0 4px 10px -3px rgb(0 0 0 / 0.55);
 }
 
 @layer base {
@@ -129,9 +126,9 @@
   .decor-blob--brass {
     background: radial-gradient(
       closest-side,
-      rgb(180 152 107 / 0.42),
-      rgb(180 152 107 / 0.14) 55%,
-      rgb(180 152 107 / 0) 78%
+      rgb(217 164 0 / 0.22),
+      rgb(217 164 0 / 0.07) 55%,
+      rgb(217 164 0 / 0) 78%
     );
     animation: drift-a 32s ease-in-out infinite;
   }
@@ -139,9 +136,9 @@
   .decor-blob--tan {
     background: radial-gradient(
       closest-side,
-      rgb(171 158 142 / 0.46),
-      rgb(171 158 142 / 0.15) 55%,
-      rgb(171 158 142 / 0) 78%
+      rgb(120 105 70 / 0.14),
+      rgb(120 105 70 / 0.05) 55%,
+      rgb(120 105 70 / 0) 78%
     );
     animation: drift-b 38s ease-in-out infinite;
   }
@@ -150,7 +147,7 @@
   .decor-grain {
     position: absolute;
     inset: 0;
-    opacity: 0.16;
+    opacity: 0.1;
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   }

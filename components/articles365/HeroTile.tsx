@@ -20,7 +20,7 @@ export function HeroTile() {
         <div style={riseDelay(90)} className="rise-mark shrink-0">
           <div className="float">
             <Image
-              src="/articles365-emblem.png"
+              src="/articles365-emblem-gold.png"
               alt="Articles 365 emblem"
               width={640}
               height={640}

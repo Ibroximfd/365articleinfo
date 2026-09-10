@@ -1,8 +1,12 @@
 # Articles 365 — link in bio
 
 A single-page link hub for the **Articles 365** brand, reached by scanning the QR
-code on the back of the *365 Magazine* book. A bento of warm neutral tiles — a full-width
+code on the back of the *365 Magazine* book. A bento in white, gold and black — a full-width
 masthead, four destinations and a contact bar — no dark mode.
+
+Two palettes live in this repo. `main` is the white / gold / black version; the
+earlier warm-neutral one is kept whole on the `warm-neutral` branch and the
+`v1-warm-neutral` tag — `git switch warm-neutral` brings it back.
 
 > **Consistency is the key** — one article every day, for 365 days.
 
@@ -78,42 +82,35 @@ public/
 
 ## The palette
 
-Five colours, applied as three surfaces plus ink and brass.
+White, the logo's gold, and black — with the gold at three depths.
 
 | Token | Hex | Role |
 |---|---|---|
-| `ground` | `#E7E1D8` | the page behind the tiles (Off White ↔ Warm Grey) |
-| `paper` · `linen` · `sand` · `grey` | `#F6F4F2` `#EEE9E1` `#E1DACF` `#D3C9BD` | the four tile steps, Off White → Warm Grey |
-| `tan` | `#AB9E8E` | **Muted Tan** — hairlines and the bloom in the ground |
-| `brass` | `#B4986B` | **Antique Brass** — glow, rules, accents, hover |
-| `brass-mark` | `#9C7F49` | the logo, deepened to hold against paper |
-| `brass-deep` | `#7F6539` | brass **text** — 5.0:1 on Off White |
-| `ink` | `#423E3B` | headings and card titles — 9.7:1 |
-| `ink-soft` | `#5F5952` | body copy — 6.3:1 |
-| `ink-faint` | `#6F675D` | labels, footer, the arrow — 4.7:1 |
+| `ground` · `paper` | `#FFFFFF` | the page, the masthead card, the contact bar |
+| `gold-1` … `gold-4` | `#E6B41C` `#DDAA0E` `#D3A004` `#C89600` | the four tile steps, light to deep |
+| `brass` | `#D9A400` | the emblem, rules, hairlines, the bloom in the ground |
+| `gold-bright` | `#FCBF01` | the logo's own gold — every glyph on black |
+| `brass-deep` | `#8A6600` | small gold **text** on white — the first gold that clears 4.5:1 |
+| `black` · `black-lift` | `#0B0A09` `#1E1B18` | the icon chips and the `Click here` pills |
+| `ink` | `#141210` | headings and titles |
+| `ink-soft` | `#33302B` | body copy — 4.9:1 even on the deepest gold |
 
-**The gradation is the harmony.** The four link tiles step from Off White to Warm
-Grey rather than taking four contrasting fills. One tonal ladder is what keeps the
-page quiet, and a link keeps its step across every breakpoint — the desktop row
-and the phone's 2×2 read as one system, not two designs.
+**Gold at three depths, on purpose.** The logo's `#FCBF01` is bright enough to
+live only on black, where it is the glyph in every chip — the brand's original
+yellow-on-black. Against white it drops to `#D9A400` for the emblem and rules,
+and small text drops again to `#8A6600`; anything lighter fails 4.5:1. The four
+tiles step through four golds rather than taking one fill, so the row still reads
+as a set, and the ladder runs diagonally across the phone's 2×2.
 
-**No text ever sits on Muted Tan.** Dark Charcoal only reaches 4.0:1 on it, so tan
-works as the hairline and the bloom in the ground, bridging Warm Grey to Charcoal.
-Antique Brass is the accent alone: set it as a ground and the accents have nothing
-to be accents against, and the whole page goes gold.
-
-Brass appears at three depths on purpose. The palette brass is decorative only —
-at 2.5:1 on Off White it can carry a rule or a glow but never a word — so text
-uses `brass-deep` and the logo uses `brass-mark`, both the same hue (≈38°) with
-enough weight to read. Shadows are tinted with Dark Charcoal, never neutral
-black: a grey shadow under a warm card is the tell that a palette was skinned on
-rather than applied.
+**No gold text on gold.** Titles and copy on the tiles are near-black; the pills
+are black with the bright gold, echoing the chips. Shadows are tinted with the
+gold's own dark (`rgb(90 65 0)`), never neutral black.
 
 ## Design notes
 
-**One dark note.** Dark Charcoal appears only in the icon chips. Brass on charcoal
-is the palette's strongest pairing, so it marks each destination while everything
-else stays in the light ladder.
+**Black is the punctuation.** It appears only in the chips and the pills — the
+logo's gold on jet black marks each destination, and everything else is white or
+gold.
 
 **The page is one funnel.** A centred masthead → `Follow for more` closing the
 tile → an animated chevron → the tiles, each carrying a `Click here` pill. The audience

@@ -6,13 +6,13 @@ import { CTA } from "@/lib/links";
 import type { LinkItem, LinkShade } from "@/lib/links";
 import { LINK_ICONS, PlatformBadge } from "./SocialIcons";
 
-/** The tonal ladder, Off White -> Warm Grey. Held here so the tile is the one
+/** The tonal ladder, four golds light to deep. Held here so the tile is the one
  *  place a shade is turned into a class, and Tailwind can see every literal. */
 const SHADES: Record<LinkShade, string> = {
-  paper: "bg-paper",
-  linen: "bg-linen",
-  sand: "bg-sand",
-  grey: "bg-grey",
+  paper: "bg-gold-1",
+  linen: "bg-gold-2",
+  sand: "bg-gold-3",
+  grey: "bg-gold-4",
 };
 
 /**
@@ -32,17 +32,17 @@ export function LinkTile({ link }: { link: LinkItem }) {
       whileHover={{ y: -5, scale: 1.015 }}
       whileTap={{ scale: 0.985 }}
       transition={{ type: "spring", stiffness: 340, damping: 26 }}
-      className={`group relative flex h-full min-h-[13.5rem] flex-col items-center overflow-hidden rounded-[1.5rem] border border-hairline p-4 text-center shadow-tile transition-[box-shadow,border-color] duration-300 hover:border-brass/55 hover:shadow-tile-hover sm:min-h-[15rem] sm:rounded-[1.75rem] sm:p-5 lg:min-h-[17.5rem] lg:p-6 ${SHADES[shade]}`}
+      className={`group relative flex h-full min-h-[13.5rem] flex-col items-center overflow-hidden rounded-[1.5rem] border border-hairline p-4 text-center shadow-tile transition-[box-shadow,border-color] duration-300 hover:border-black/40 hover:shadow-tile-hover sm:min-h-[15rem] sm:rounded-[1.75rem] sm:p-5 lg:min-h-[17.5rem] lg:p-6 ${SHADES[shade]}`}
     >
       {/* Light sweeps across the tile on hover — the only decorative flourish. */}
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-0 -translate-x-full bg-[linear-gradient(105deg,transparent_38%,rgb(255_255_255_/_0.6)_50%,transparent_62%)] transition-transform duration-[900ms] ease-out group-hover:translate-x-full"
+        className="pointer-events-none absolute inset-0 -translate-x-full bg-[linear-gradient(105deg,transparent_38%,rgb(255_255_255_/_0.45)_50%,transparent_62%)] transition-transform duration-[900ms] ease-out group-hover:translate-x-full"
       />
 
-      {/* Dark Charcoal chip, brass glyph: centred so each tile reads as its own
+      {/* Jet-black chip, the logo's gold glyph: centred so each tile reads as its own
           mark rather than a row of corner icons. */}
-      <span className="relative mt-2 grid size-16 shrink-0 place-items-center rounded-[1.25rem] bg-gradient-to-br from-charcoal-lift to-ink text-brass shadow-chip ring-1 ring-brass/25 transition-[transform,box-shadow] duration-300 group-hover:scale-[1.06] group-hover:ring-brass/55 sm:mt-3 sm:size-[4.5rem] sm:rounded-[1.4rem] lg:mt-4 lg:size-[5rem] lg:rounded-[1.5rem] xl:size-[5.5rem] xl:rounded-[1.6rem]">
+      <span className="relative mt-2 grid size-16 shrink-0 place-items-center rounded-[1.25rem] bg-gradient-to-br from-black-lift to-black text-gold-bright shadow-chip ring-1 ring-gold-bright/30 transition-[transform,box-shadow] duration-300 group-hover:scale-[1.06] group-hover:ring-gold-bright/70 sm:mt-3 sm:size-[4.5rem] sm:rounded-[1.4rem] lg:mt-4 lg:size-[5rem] lg:rounded-[1.5rem] xl:size-[5.5rem] xl:rounded-[1.6rem]">
         <Icon className="size-8 sm:size-9 lg:size-10 xl:size-11" strokeWidth={1.6} aria-hidden />
         {badge ? <PlatformBadge platform={badge} /> : null}
       </span>
@@ -65,7 +65,7 @@ export function LinkTile({ link }: { link: LinkItem }) {
             "click here" is the last thing a screen reader needs read to it. */}
         <span
           aria-hidden
-          className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-paper px-3 py-1.5 text-[0.63rem] font-semibold tracking-[0.16em] text-brass-deep uppercase ring-1 ring-brass/30 transition-[box-shadow,background-color] duration-300 group-hover:bg-white group-hover:ring-brass/70 sm:mt-2.5 sm:text-[0.66rem] lg:text-[0.68rem]"
+          className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-black px-3 py-1.5 text-[0.63rem] font-semibold tracking-[0.16em] text-gold-bright uppercase shadow-chip transition-[background-color,box-shadow] duration-300 group-hover:bg-black-lift sm:mt-2.5 sm:text-[0.66rem] lg:text-[0.68rem]"
         >
           {CTA}
           <ArrowRight

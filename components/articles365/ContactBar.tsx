@@ -14,9 +14,9 @@ export function ContactBar() {
         href={CONTACT.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center gap-4 rounded-full border border-hairline bg-paper p-3 shadow-tile transition-[box-shadow,border-color] duration-300 hover:border-brass/55 hover:shadow-tile-hover sm:gap-5 sm:py-3.5 sm:pr-7 sm:pl-4"
+        className="group flex items-center gap-4 rounded-full border border-hairline bg-paper p-3 shadow-tile transition-[box-shadow,border-color] duration-300 hover:border-black/40 hover:shadow-tile-hover sm:gap-5 sm:py-3.5 sm:pr-7 sm:pl-4"
       >
-        <span className="grid size-11 shrink-0 place-items-center rounded-full bg-gradient-to-br from-charcoal-lift to-ink text-brass shadow-chip ring-1 ring-brass/25 transition-transform duration-300 group-hover:scale-[1.06] sm:size-12">
+        <span className="grid size-11 shrink-0 place-items-center rounded-full bg-gradient-to-br from-black-lift to-black text-gold-bright shadow-chip ring-1 ring-gold-bright/30 transition-transform duration-300 group-hover:scale-[1.06] sm:size-12">
           <TelegramGlyph className="size-4 sm:size-[1.1rem]" />
         </span>
 
