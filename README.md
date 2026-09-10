@@ -1,8 +1,8 @@
 # Articles 365 — link in bio
 
 A single-page link hub for the **Articles 365** brand, reached by scanning the QR
-code on the back of the *365 Magazine* book. Muted Tan ground, an Off White plate,
-four destination cards and a contact line, no dark mode.
+code on the back of the *365 Magazine* book. A bento of warm neutral tiles — four
+destinations plus a contact bar — no dark mode.
 
 > **Consistency is the key** — one article every day, for 365 days.
 
@@ -10,6 +10,7 @@ four destination cards and a contact line, no dark mode.
 
 - Next.js 16 (App Router) · React 19 · TypeScript (strict)
 - Tailwind CSS v4 — design tokens live in `app/globals.css` under `@theme`
+- DM Serif Display + Manrope, self-hosted and subset (see **Assets**)
 - Motion (Framer Motion) — `LazyMotion` + `domAnimation`, cards only
 - lucide-react for icons; the Telegram and Instagram glyphs are hand-drawn
 
@@ -37,9 +38,12 @@ nothing else needs touching.
   title: "Telegram channel",
   description: "Daily articles and announcements at @articles365.",
   href: "https://t.me/articles365",
-  icon: "telegram",        // "video" | "audio" | "telegram" | "instagram"
-  platform: "telegram",    //   → resolved by LINK_ICONS in SocialIcons.tsx
-  badge: "telegram",       // optional corner stamp, for generic chip icons
+  description: "Daily articles and announcements at @articles365.",  // lg and up
+  caption: "@articles365",  // the phone's 2×2 tiles, where the description won't fit
+  icon: "telegram",         // "video" | "audio" | "telegram" | "instagram"
+  shade: "sand",            // "paper" | "linen" | "sand" | "grey" — the tonal step
+  platform: "telegram",
+  badge: "telegram",        // optional corner stamp, for generic chip icons
   hint: "Opens on Telegram in a new tab.",  // visually hidden, for screen readers
 }
 ```
@@ -49,18 +53,19 @@ nothing else needs touching.
 ```
 app/
   layout.tsx        fonts, metadata, Open Graph, viewport
-  page.tsx          the plate and the hero / links / contact grid
+  page.tsx          the bento grid
   globals.css       design tokens + the CSS entrance/decor animations
   icon.png          favicon (96px, Off White ground so it reads in a tab)
-  fonts/            subset, weight-pinned woff2 files
+  fonts/            subset woff2 files
 components/articles365/
-  Hero.tsx          emblem, kicker, wordmark, slogan, three points   (server)
-  LinksSection.tsx  renders the cards from LINKS, with the count     (server)
-  LinkCard.tsx      one card; hover/press springs                    (client)
-  Contact.tsx       the @I365_admin signature line                   (server)
+  HeroTile.tsx      emblem, kicker, wordmark, slogan                 (server)
+  DaysTile.tsx      the dark tile: 365, and the three points         (server)
+  LinksSection.tsx  the four tiles from LINKS — 2-up, 4-up from lg   (server)
+  LinkTile.tsx      one tile; hover/press springs                    (client)
+  ContactBar.tsx    the @I365_admin bar                              (server)
   SocialIcons.tsx   icon map, Telegram/Instagram glyphs, platform badge
-  BackgroundDecor.tsx  tan ground, brass glow, warm-grey light, linen grain
-  Footer.tsx
+  BackgroundDecor.tsx  warm ground, brass glow, tan pocket, linen grain
+  Footer.tsx        the credit, phones only (it rides in the bar from lg)
   MotionRoot.tsx    LazyMotion + reduced-motion config
 lib/
   links.ts          all page content
@@ -77,27 +82,25 @@ Five colours, applied as three surfaces plus ink and brass.
 
 | Token | Hex | Role |
 |---|---|---|
-| `ground` | `#AB9E8E` | **Muted Tan** — the page behind everything |
-| `off-white` | `#F6F4F2` | the plate; cards are a step whiter on top of it |
-| `warm-grey` | `#D3C9BD` | hairline borders, rules, the light in the ground |
-| `tan-deep` | `#8C8070` | the vignette at the foot of the ground |
-| `brass` | `#B4986B` | the glow in the ground; accents and hover on the plate |
+| `ground` | `#E7E1D8` | the page behind the tiles (Off White ↔ Warm Grey) |
+| `paper` · `linen` · `sand` · `grey` | `#F6F4F2` `#EEE9E1` `#E1DACF` `#D3C9BD` | the four tile steps, Off White → Warm Grey |
+| `tan` | `#AB9E8E` | **Muted Tan** — hairlines and the bloom in the ground |
+| `brass` | `#B4986B` | **Antique Brass** — glow, rules, accents, hover |
 | `brass-mark` | `#9C7F49` | the logo, deepened to hold against paper |
 | `brass-deep` | `#7F6539` | brass **text** — 5.0:1 on Off White |
 | `ink` | `#423E3B` | headings and card titles — 9.7:1 |
 | `ink-soft` | `#5F5952` | body copy — 6.3:1 |
 | `ink-faint` | `#6F675D` | labels, footer, the arrow — 4.7:1 |
 
-**Why tan and not brass for the ground.** Antique Brass is the accent — the logo,
-the slogan, the rules, the hover state. Set it as the ground and the accents have
-nothing to be accents against, and the whole page goes gold. Muted Tan is the
-neutral in the set: it lets Off White read as paper and brass read as metal, the
-same logic as the palette's own photograph (tan wall, off-white bedding, brass
-detail). Brass still shapes the ground as the drifting glow in the top corner.
+**The gradation is the harmony.** The four link tiles step from Off White to Warm
+Grey rather than taking four contrasting fills. One tonal ladder is what keeps the
+page quiet, and a link keeps its step across every breakpoint — the desktop row
+and the phone's 2×2 read as one system, not two designs.
 
-**No text ever sits on the tan.** Dark Charcoal only reaches 4.0:1 straight on
-Muted Tan, so the plate is structural, not decorative — it appears at every size,
-with a 12 px tan frame on phones.
+**No text ever sits on Muted Tan.** Dark Charcoal only reaches 4.0:1 on it, so tan
+works as the hairline and the bloom in the ground, bridging Warm Grey to Charcoal.
+Antique Brass is the accent alone: set it as a ground and the accents have nothing
+to be accents against, and the whole page goes gold.
 
 Brass appears at three depths on purpose. The palette brass is decorative only —
 at 2.5:1 on Off White it can carry a rule or a glow but never a word — so text
@@ -108,16 +111,14 @@ rather than applied.
 
 ## Design notes
 
-**Three surfaces.** Ground → plate → card, each a step lighter, is what makes the
-page read as a made object instead of text on a background. The dark charcoal
-icon chips are the one place the page goes dark, and the brass glyphs on them are
-the palette's strongest pairing.
+**One dark note.** Dark Charcoal appears twice: the `365` tile and the icon chips.
+Brass on charcoal is the palette's strongest pairing, so it carries the promise
+and marks each destination. Everything else stays in the light ladder.
 
-**Contact is a signature, not a fifth card.** The cards are the book's media; the
-handle is a person. It is set under the hero as a small-caps label, the handle in
-brass and a round charcoal chip — round, where the card chips are square, so the
-eye files it differently. On phones it closes the page after the links; from `lg`
-it sits under the hero, with the links column centred against the pair.
+**Contact is a bar, not a fifth tile.** The tiles are the book's media; the handle
+is a person. It gets its own full-width bar under them, with a round chip where
+the tiles' are square, so the eye files it differently. The credit rides in that
+bar from `lg` and closes the page on phones.
 
 **Entrances are CSS, not JavaScript.** `.rise` / `.rise-slide` / `.rise-scale` in
 `globals.css`, staggered with the `--rise-delay` custom property. Two reasons:
@@ -142,25 +143,21 @@ animation, and `MotionConfig reducedMotion="user"` drops Motion's transforms.
 
 ## Assets
 
-`public/logo-mark.png` and `logo-articles365.png` were derived from the original
-black-background JPEG. The artwork is glow-on-black, i.e. already premultiplied
-against black, so the alpha channel is the brightest colour channel; the RGB is
-then repainted as flat `brass-mark` to keep JPEG chroma noise out of the edges.
+`public/logo-mark.png` (the emblem) and `logo-articles365.png` (the full lockup)
+come from the supplied cut-out `logo.png`, which has a clean alpha channel. That
+alpha is kept exactly; only the RGB is replaced, with one flat `brass-mark`, so
+the mark sits in the palette instead of the artwork's saturated yellow. Rerun
+`design/` assets from the same source if the artwork is ever revised.
 
-The emblem is deliberately small (104–144 px). The source ring carries a rough,
-hand-drawn edge that reads as a letterpress stamp at that size and as noise if
-scaled up — and the Playfair wordmark, not the emblem, is what should carry the
-brand at display size.
-
-The fonts in `app/fonts/` are Playfair Display and Manrope (SIL OFL), pinned to the
-weights this page renders and subset to Basic Latin plus typographic punctuation:
+The fonts in `app/fonts/` are DM Serif Display and Manrope (SIL OFL), subset to
+Basic Latin plus typographic punctuation:
 
 ```
 U+0020–007E, U+00A0, U+00A9, U+00B7, U+02BB, U+02BC, U+2013, U+2014,
 U+2018–201A, U+201C–201E, U+2022, U+2026, U+2039, U+203A
 ```
 
-That is 45 KB for three faces instead of ~100 KB. **If the copy ever needs a
+That is 37 KB for three faces instead of ~90 KB. **If the copy ever needs a
 character outside that range it will fall back to Georgia/Arial** — regenerate the
 subsets with `pyftsubset` if so.
 
@@ -177,7 +174,8 @@ CLS 0 on both, no colour-contrast failures, no horizontal overflow at any width.
 
 ## Responsive
 
-One capped column up to `lg` (phones and tablets, the QR audience), a two-column
-editorial spread from `lg`, and larger type and spacing steps at `2xl`. Checked at
-390, 414, 768, 1024, 1280, 1440 and 1920 px. Card hit areas are ~110 px tall,
-comfortably over the 44 px touch-target minimum.
+Hero and `365` tiles stack on phones and tablets and sit side by side from `lg`;
+the four link tiles are 2-up below `lg` and 4-up above it, with their own type and
+chip step at `lg` where the tiles are narrowest. Checked at 390, 414, 768, 1024,
+1280, 1440 and 1920 px, with no horizontal overflow at any of them. Tile hit areas
+are ~190 px tall, far over the 44 px touch-target minimum.

@@ -1,63 +1,58 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Articles 365 — five-colour warm neutral palette. Light only by design:
-   the page lives behind a QR code on a printed book cover.
+   Articles 365 — five warm neutrals, applied as three surfaces plus ink and
+   brass. Light only by design: the page lives behind a QR code on a printed
+   book cover.
 
    Off White #F6F4F2 · Warm Grey #D3C9BD · Muted Tan #AB9E8E
    Antique Brass #B4986B · Dark Charcoal #423E3B
 
-   The ground is Muted Tan and everything legible sits on an Off White plate:
-   Dark Charcoal only reaches 4.0:1 directly on tan, so no text is ever set on
-   the ground itself. Antique Brass is the atmosphere in that ground (the glow
-   blobs) and the accent on the plate — never the ground, or the accents would
-   have nothing to be accents against.
-
-   Brass appears at three depths. The palette brass is decorative only — at
-   2.5:1 on Off White it can carry a glow or a rule but never a word — so text
-   uses `brass-deep` (5.0:1) and the logo uses `brass-mark`, which keeps the
-   same hue with enough weight to read against paper.
+   The four link tiles step from Off White to Warm Grey. That gradation — one
+   tonal ladder rather than four contrasting fills — is what keeps the page
+   quiet. Muted Tan never carries text (Dark Charcoal only reaches 4.0:1 on it);
+   it works as the hairline and the bloom in the ground, bridging Warm Grey to
+   Charcoal. Brass is the accent alone, at three depths: the palette value for
+   glow and rules, `brass-deep` for text (5.0:1 on Off White), `brass-mark` for
+   the logo, which needs weight to read against paper.
 --------------------------------------------------------------------------- */
 @theme {
-  --color-off-white: #f6f4f2;
-  --color-ground: #ab9e8e;
-  --color-tan-deep: #8c8070;
-  --color-warm-grey: #d3c9bd;
-  --color-muted-tan: #ab9e8e;
+  --color-paper: #f6f4f2;
+  --color-linen: #eee9e1;
+  --color-sand: #e1dacf;
+  --color-grey: #d3c9bd;
+  --color-tan: #ab9e8e;
+  --color-ground: #e7e1d8;
+
   --color-brass: #b4986b;
   --color-brass-mark: #9c7f49;
   --color-brass-deep: #7f6539;
-  --color-ink: #423e3b;
-  --color-ink-soft: #5f5952;
-  --color-ink-faint: #6f675d;
 
+  --color-ink: #423e3b;
+  --color-ink-soft: #544e47;
   --color-charcoal-lift: #4a4642;
 
-  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-serif: var(--font-dm-serif), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
 
-  --radius-card: 1.375rem;
+  --color-hairline: rgba(171, 158, 142, 0.38);
 
-  /* Shadows are tinted with Dark Charcoal, never neutral black — a grey
-     shadow under a warm card is the tell that a palette was not applied. */
-  --shadow-card: inset 0 1px 0 rgb(255 255 255 / 0.55),
-    0 1px 2px rgb(66 62 59 / 0.05), 0 10px 28px -14px rgb(66 62 59 / 0.2);
-  --shadow-card-hover: inset 0 1px 0 rgb(255 255 255 / 0.7),
-    0 2px 6px rgb(66 62 59 / 0.07), 0 26px 50px -20px rgb(127 101 57 / 0.38);
+  /* Shadows are tinted with Dark Charcoal, never neutral black — a grey shadow
+     under a warm tile is the tell that a palette was skinned on, not applied. */
+  --shadow-tile: inset 0 1px 0 rgb(255 255 255 / 0.62),
+    0 1px 2px rgb(66 62 59 / 0.04), 0 16px 34px -22px rgb(66 62 59 / 0.26);
+  --shadow-tile-hover: inset 0 1px 0 rgb(255 255 255 / 0.75),
+    0 2px 6px rgb(66 62 59 / 0.06), 0 26px 48px -22px rgb(127 101 57 / 0.34);
+  --shadow-dark: inset 0 1px 0 rgb(255 255 255 / 0.07),
+    0 1px 2px rgb(66 62 59 / 0.1), 0 18px 38px -22px rgb(66 62 59 / 0.45);
   --shadow-chip: inset 0 1px 0 rgb(255 255 255 / 0.1),
-    0 2px 6px -2px rgb(66 62 59 / 0.4);
-  /* The plate the whole composition sits on. Three surfaces — ground, plate,
-     card — is what makes the page read as a made object rather than text on
-     a background. The shadow is deep enough to lift Off White off the tan. */
-  --shadow-plate: inset 0 1px 0 rgb(255 255 255 / 0.7),
-    0 2px 4px rgb(66 62 59 / 0.06), 0 40px 90px -40px rgb(66 62 59 / 0.55);
+    0 3px 8px -3px rgb(66 62 59 / 0.42);
 }
 
 @layer base {
   html {
     color-scheme: light;
-    scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -80,34 +75,33 @@
 }
 
 @layer components {
-  /* Entrances run as CSS, not JS: they start at first paint instead of waiting
-     for hydration, so hero copy is never a blank screen on a slow phone. */
+  /* Entrances are CSS, not JS. Two reasons, both measured:
+     1. Motion's `initial="hidden"` writes opacity:0 into the SSR HTML, so
+        nothing is visible until hydration — 2.6s of LCP render delay on a
+        throttled phone for content that had already arrived.
+     2. A CSS *opacity* fade runs on the compositor and never emits a new
+        paint, so an element starting at opacity 0 is disqualified as an LCP
+        candidate for good — Chrome reported no LCP at all.
+     So the entrance is transform-only: everything paints opaque in frame one
+     and slides into place. */
   .rise {
-    animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: rise 0.62s cubic-bezier(0.22, 1, 0.36, 1) both;
     animation-delay: var(--rise-delay, 0ms);
   }
 
-  /* Transform-only variant for the hero copy. A CSS opacity fade runs on the
-     compositor and never emits a new paint, so text that starts at opacity 0
-     is disqualified as an LCP candidate for good — Chrome reports no LCP at
-     all. Sliding opaque text keeps the same entrance and paints immediately. */
-  .rise-slide {
-    animation: rise-slide 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: var(--rise-delay, 0ms);
-  }
-
-  .rise-scale {
-    animation: rise-scale 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* The emblem is not the LCP text, so it may fade as well as scale. */
+  .rise-mark {
+    animation: rise-mark 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
     animation-delay: var(--rise-delay, 0ms);
   }
 
   .float {
-    animation: float 7.5s ease-in-out 1s infinite;
+    animation: float 8s ease-in-out 1.1s infinite;
   }
 
-  /* Background decor. Radial gradients instead of blur() filters: identical
-     softness, but no per-frame filter pass, so the drift stays at 60fps on the
-     low-end phones that scan the QR code. */
+  /* Radial gradients rather than blur() filters: the same softness with no
+     per-frame filter pass, so the drift holds 60fps on the low-end phones
+     that scan the QR code. */
   .decor-blob {
     position: absolute;
     border-radius: 9999px;
@@ -120,66 +114,46 @@
   .decor-blob--brass {
     background: radial-gradient(
       closest-side,
-      rgb(180 152 107 / 0.62),
-      rgb(180 152 107 / 0.22) 55%,
+      rgb(180 152 107 / 0.42),
+      rgb(180 152 107 / 0.14) 55%,
       rgb(180 152 107 / 0) 78%
     );
-    animation: drift-a 30s ease-in-out infinite;
-  }
-
-  .decor-blob--warm-grey {
-    background: radial-gradient(
-      closest-side,
-      rgb(211 201 189 / 0.6),
-      rgb(211 201 189 / 0.2) 55%,
-      rgb(211 201 189 / 0) 78%
-    );
-    animation: drift-b 38s ease-in-out infinite;
+    animation: drift-a 32s ease-in-out infinite;
   }
 
   .decor-blob--tan {
     background: radial-gradient(
       closest-side,
-      rgb(140 128 112 / 0.5),
-      rgb(140 128 112 / 0) 74%
+      rgb(171 158 142 / 0.46),
+      rgb(171 158 142 / 0.15) 55%,
+      rgb(171 158 142 / 0) 78%
     );
-    animation: drift-c 34s ease-in-out infinite;
+    animation: drift-b 38s ease-in-out infinite;
   }
 
-  /* Linen tooth: a single inline SVG turbulence, multiplied over the tan. */
+  /* Linen tooth: one inline SVG turbulence, multiplied over the ground. */
   .decor-grain {
     position: absolute;
     inset: 0;
-    opacity: 0.26;
+    opacity: 0.16;
     mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.14'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   }
 }
 
 @keyframes rise {
   from {
-    opacity: 0;
-    transform: translate3d(0, 22px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes rise-slide {
-  from {
-    transform: translate3d(0, 16px, 0);
+    transform: translate3d(0, 18px, 0);
   }
   to {
     transform: none;
   }
 }
 
-@keyframes rise-scale {
+@keyframes rise-mark {
   from {
     opacity: 0;
-    transform: scale(0.9) translate3d(0, 12px, 0);
+    transform: scale(0.92) translate3d(0, 10px, 0);
   }
   to {
     opacity: 1;
@@ -193,7 +167,7 @@
     transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(0, -7px, 0);
+    transform: translate3d(0, -6px, 0);
   }
 }
 
@@ -217,21 +191,7 @@
   }
 }
 
-@keyframes drift-c {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(-4%, -6%, 0);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   .decor-blob,
   .float {
     animation: none !important;

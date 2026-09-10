@@ -1,4 +1,4 @@
-/** Platform drives the small badge stamped on a card's icon chip. */
+/** Platform drives the small badge stamped on a tile's icon chip. */
 export type LinkPlatform = "telegram" | "instagram";
 
 /**
@@ -8,13 +8,24 @@ export type LinkPlatform = "telegram" | "instagram";
  */
 export type LinkIconKey = "video" | "audio" | "telegram" | "instagram";
 
+/**
+ * The tonal step a tile is painted in. The four run Off White -> Warm Grey;
+ * a link keeps its shade across every breakpoint, so the desktop row and the
+ * phone's 2x2 read as one system rather than two designs.
+ */
+export type LinkShade = "paper" | "linen" | "sand" | "grey";
+
 export interface LinkItem {
-  /** Stable key — also used as the React key and the analytics-friendly slug. */
+  /** Stable key — also the React key and an analytics-friendly slug. */
   id: string;
   title: string;
+  /** Shown on the wide tiles from `lg` up. */
   description: string;
+  /** One line, for the phone's 2x2 tiles where the description will not fit. */
+  caption: string;
   href: string;
   icon: LinkIconKey;
+  shade: LinkShade;
   platform: LinkPlatform;
   /**
    * Small platform stamp on the icon chip. Only set it when the chip icon is
@@ -22,7 +33,7 @@ export interface LinkItem {
    */
   badge?: LinkPlatform;
   /**
-   * Visually-hidden suffix appended to the card's own text. Kept as extra
+   * Visually-hidden suffix appended to the tile's own text. Kept as extra
    * content rather than an aria-label so the accessible name still contains
    * the visible label (WCAG 2.5.3 Label in Name).
    */
@@ -31,15 +42,18 @@ export interface LinkItem {
 
 /**
  * The four media destinations. Contact is separate — see CONTACT below.
- * Add or reorder entries here — the UI renders whatever is in this array.
+ * Add or reorder entries here and the UI follows, including the count in the
+ * section header; nothing else needs touching.
  */
 export const LINKS: readonly LinkItem[] = [
   {
     id: "instruction-video",
     title: "Instruction video",
     description: "A step-by-step guide to getting the most out of the book.",
+    caption: "Step-by-step guide",
     href: "https://t.me/+azN9x8V6lc40NTNi",
     icon: "video",
+    shade: "paper",
     platform: "telegram",
     badge: "telegram",
     hint: "Opens on Telegram in a new tab.",
@@ -48,8 +62,10 @@ export const LINKS: readonly LinkItem[] = [
     id: "articles-audio",
     title: "Article audio",
     description: "Every article read aloud — listen on the move.",
+    caption: "Listen on the move",
     href: "https://t.me/+cZuuurXwBMRlNjYy",
     icon: "audio",
+    shade: "linen",
     platform: "telegram",
     badge: "telegram",
     hint: "Opens on Telegram in a new tab.",
@@ -58,8 +74,10 @@ export const LINKS: readonly LinkItem[] = [
     id: "telegram-channel",
     title: "Telegram channel",
     description: "Daily articles and announcements at @articles365.",
+    caption: "@articles365",
     href: "https://t.me/articles365",
     icon: "telegram",
+    shade: "sand",
     platform: "telegram",
     hint: "Opens on Telegram in a new tab.",
   },
@@ -67,16 +85,18 @@ export const LINKS: readonly LinkItem[] = [
     id: "instagram",
     title: "Instagram",
     description: "The 365 Magazine page: book news and highlights.",
+    caption: "@365_magazine",
     href: "https://www.instagram.com/365_magazine?stkn=YWFnbzRpbjdqdDc2&utm_source=qr",
     icon: "instagram",
+    shade: "grey",
     platform: "instagram",
     hint: "Opens on Instagram in a new tab.",
   },
 ] as const;
 
 /**
- * Direct contact. Kept apart from LINKS on purpose: the cards are the book's
- * media, this is a person — it renders as a signature line under the hero.
+ * Direct contact. Kept apart from LINKS on purpose: the tiles are the book's
+ * media, this is a person — it renders as its own bar under them.
  */
 export const CONTACT = {
   label: "Contact · Partnerships",
@@ -89,8 +109,10 @@ export const CONTACT = {
 /** Hero copy lives beside the links so all page content is edited in one place. */
 export const HERO = {
   kicker: "365 Magazine",
-  brand: "ARTICLES 365",
+  brand: "Articles 365",
   slogan: "Consistency is the key",
+  count: "365",
+  countLabel: "days",
   points: [
     "One article every day, for 365 days",
     "A wider view of the world, a page at a time",

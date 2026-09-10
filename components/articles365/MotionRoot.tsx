@@ -7,12 +7,12 @@ import { EASE_OUT } from "@/lib/motion";
 /**
  * Motion defaults for the page.
  *
- * `LazyMotion` + `domAnimation` loads only the gesture/animation features the
- * cards actually use instead of the full `motion` runtime — the components use
- * `m.*` rather than `motion.*` to opt into it.
+ * `LazyMotion` + `domAnimation` loads only the gesture features the tiles
+ * actually use instead of the full `motion` runtime — components use `m.*`
+ * rather than `motion.*` to opt into it.
  *
  * `reducedMotion="user"` makes Motion drop transform animation for anyone with
- * the OS setting on, so the cards stop moving but still respond.
+ * the OS setting on, so the tiles stop moving but still respond.
  */
 export function MotionRoot({ children }: { children: ReactNode }) {
   return (

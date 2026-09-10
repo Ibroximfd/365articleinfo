@@ -4,28 +4,19 @@ import { MotionRoot } from "@/components/articles365/MotionRoot";
 import "./globals.css";
 
 /**
- * Self-hosted, weight-pinned, Latin-subset builds of Playfair Display and
- * Manrope (SIL Open Font License). Google's variable originals are ~100 KB for
- * the three faces; pinned to the weights this page renders and cut to Basic
- * Latin plus typographic punctuation they are ~45 KB, all of it preloaded.
+ * Self-hosted, Latin-subset builds of DM Serif Display and Manrope (SIL Open
+ * Font License), cut to Basic Latin plus typographic punctuation: ~37 KB for
+ * the three faces instead of ~90 KB, all of it preloaded.
  *
  * Covered range: U+0020–007E, NBSP, © · ʻ ʼ – — ‘ ’ ‚ “ ” „ • … ‹ ›
  * Regenerate the files if the copy ever needs a character outside it.
  */
-const playfair = localFont({
+const dmSerif = localFont({
   src: [
-    {
-      path: "./fonts/playfair-display-700-latin.woff2",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "./fonts/playfair-display-500-italic-latin.woff2",
-      weight: "500",
-      style: "italic",
-    },
+    { path: "./fonts/dm-serif-display-latin.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/dm-serif-display-latin-italic.woff2", weight: "400", style: "italic" },
   ],
-  variable: "--font-playfair",
+  variable: "--font-dm-serif",
   display: "swap",
   adjustFontFallback: "Times New Roman",
   fallback: ["Georgia", "Times New Roman", "serif"],
@@ -85,7 +76,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ab9e8e",
+  themeColor: "#e7e1d8",
   colorScheme: "light",
 };
 
@@ -93,7 +84,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${manrope.variable} h-full antialiased`}
+      className={`${dmSerif.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
         <MotionRoot>{children}</MotionRoot>

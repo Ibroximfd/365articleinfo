@@ -2,7 +2,7 @@ import { CirclePlay, Headphones, Send } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import type { LinkIconKey, LinkPlatform } from "@/lib/links";
 
-/** Any 24×24 currentColor glyph — lucide's icons and our own both satisfy it. */
+/** Any 24x24 currentColor glyph — lucide's icons and our own both satisfy it. */
 export type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
 /** Telegram's paper plane. Filled, so it stays readable at badge size. */
@@ -50,17 +50,17 @@ const GLYPHS: Record<LinkPlatform, IconComponent> = {
 };
 
 /**
- * Tiny stamp pinned to the corner of a card's icon chip, so a generic
- * "play" or "headphones" glyph still tells you where the link goes.
+ * Tiny stamp pinned to the corner of a tile's icon chip, so a generic "play"
+ * or "headphones" glyph still tells you where the link goes.
  */
 export function PlatformBadge({ platform }: { platform: LinkPlatform }) {
   const Glyph = GLYPHS[platform];
   return (
     <span
-      className="absolute -right-1 -bottom-1 grid size-5 place-items-center rounded-full bg-off-white text-brass-deep shadow-[0_1px_4px_rgb(66_62_59_/_0.3)] ring-1 ring-warm-grey"
+      className="absolute -right-1 -bottom-1 grid size-6 place-items-center rounded-full bg-paper text-brass-deep shadow-[0_1px_4px_rgb(66_62_59_/_0.3)] ring-1 ring-hairline lg:size-7"
       aria-hidden
     >
-      <Glyph className="size-3" />
+      <Glyph className="size-3.5 lg:size-4" />
     </span>
   );
 }
