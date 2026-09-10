@@ -58,7 +58,7 @@ app/
   icon.png          favicon (96px, Off White ground so it reads in a tab)
   fonts/            subset woff2 files
 components/articles365/
-  HeroTile.tsx      emblem, wordmark, the three points, Follow strip (server)
+  HeroTile.tsx      the centred emblem + wordmark lockup, Follow strip (server)
   ScrollCue.tsx     the animated chevrons pointing at the tiles      (server)
   LinksSection.tsx  the four tiles from LINKS — 2-up, 4-up from lg   (server)
   LinkTile.tsx      one tile; hover/press springs                    (client)
@@ -115,8 +115,8 @@ rather than applied.
 is the palette's strongest pairing, so it marks each destination while everything
 else stays in the light ladder.
 
-**The page is one funnel.** Masthead → `Follow for more` closing the tile → an
-animated chevron → the tiles, each carrying a `Click here` pill. The audience
+**The page is one funnel.** A centred masthead → `Follow for more` closing the
+tile → an animated chevron → the tiles, each carrying a `Click here` pill. The audience
 arrives from a QR code on a printed book, so the affordance is spelled out rather
 than implied; both cues are `aria-hidden`, since the links are already named.
 
@@ -186,8 +186,10 @@ CLS 0 on both, no colour-contrast failures, no horizontal overflow at any width.
 
 ## Responsive
 
-Hero and `365` tiles stack on phones and tablets and sit side by side from `lg`;
-the four link tiles are 2-up below `lg` and 4-up above it, with their own type and
-chip step at `lg` where the tiles are narrowest. Checked at 390, 414, 768, 1024,
+The masthead lockup stacks on phones and tablets and goes side by side from `lg`,
+centred at every size. The four link tiles are 2-up below `lg` and 4-up above it,
+with their own type and chip step at `lg` where the tiles are narrowest; the grid
+uses `auto-rows-fr` and the anchors `h-full`, so a long title on one tile never
+leaves its neighbours short or the `Click here` pills out of line. Checked at 390, 414, 768, 1024,
 1280, 1440 and 1920 px, with no horizontal overflow at any of them. Tile hit areas
 are ~190 px tall, far over the 44 px touch-target minimum.

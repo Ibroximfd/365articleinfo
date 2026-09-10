@@ -60,7 +60,7 @@ export const LINKS: readonly LinkItem[] = [
   },
   {
     id: "articles-audio",
-    title: "Article audio",
+    title: "Audio Versions of Articles",
     description: "Every article read aloud — listen on the move.",
     caption: "Listen on the move",
     href: "https://t.me/+cZuuurXwBMRlNjYy",
@@ -116,9 +116,4 @@ export const HERO = {
   slogan: "Consistency is the key",
   /** Closes the masthead and names what the tiles below are for. */
   follow: "Follow for more",
-  points: [
-    "One article every day, for 365 days",
-    "A wider view of the world, a page at a time",
-    "Use the links below to get the 365 Magazine book",
-  ],
 } as const;

@@ -32,7 +32,7 @@ export function LinkTile({ link }: { link: LinkItem }) {
       whileHover={{ y: -5, scale: 1.015 }}
       whileTap={{ scale: 0.985 }}
       transition={{ type: "spring", stiffness: 340, damping: 26 }}
-      className={`group relative flex min-h-[13.5rem] flex-col items-center overflow-hidden rounded-[1.5rem] border border-hairline p-4 text-center shadow-tile transition-[box-shadow,border-color] duration-300 hover:border-brass/55 hover:shadow-tile-hover sm:min-h-[15rem] sm:rounded-[1.75rem] sm:p-5 lg:min-h-[17.5rem] lg:p-6 ${SHADES[shade]}`}
+      className={`group relative flex h-full min-h-[13.5rem] flex-col items-center overflow-hidden rounded-[1.5rem] border border-hairline p-4 text-center shadow-tile transition-[box-shadow,border-color] duration-300 hover:border-brass/55 hover:shadow-tile-hover sm:min-h-[15rem] sm:rounded-[1.75rem] sm:p-5 lg:min-h-[17.5rem] lg:p-6 ${SHADES[shade]}`}
     >
       {/* Light sweeps across the tile on hover — the only decorative flourish. */}
       <span

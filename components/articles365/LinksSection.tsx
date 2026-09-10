@@ -6,9 +6,9 @@ import { LinkTile } from "./LinkTile";
 export function LinksSection() {
   return (
     <section aria-label="Links" className="lg:col-span-12">
-      <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+      <ul className="grid auto-rows-fr grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {LINKS.map((link, i) => (
-          <li key={link.id} className="rise" style={riseDelay(190 + i * 70)}>
+          <li key={link.id} className="rise h-full" style={riseDelay(190 + i * 70)}>
             <LinkTile link={link} />
           </li>
         ))}
