@@ -68,7 +68,6 @@ components/articles365/
   LinkTile.tsx      one tile; hover/press springs                    (client)
   ContactBar.tsx    the @I365_admin bar                              (server)
   SocialIcons.tsx   icon map, Telegram/Instagram glyphs, platform badge
-  BackgroundDecor.tsx  warm ground, brass glow, tan pocket, linen grain
   Footer.tsx        the credit, phones only (it rides in the bar from lg)
   MotionRoot.tsx    LazyMotion + reduced-motion config
 lib/
@@ -88,7 +87,7 @@ White, the logo's gold, and black — with the gold at three depths.
 |---|---|---|
 | `ground` · `paper` | `#FFFFFF` | the page, the masthead card, the contact bar |
 | `gold-1` … `gold-4` | `#E6B41C` `#DDAA0E` `#D3A004` `#C89600` | the four tile steps, light to deep |
-| `brass` | `#D9A400` | the emblem, rules, hairlines, the bloom in the ground |
+| `brass` | `#D9A400` | the emblem, rules, hairlines |
 | `gold-bright` | `#FCBF01` | the logo's own gold — every glyph on black |
 | `brass-deep` | `#8A6600` | small gold **text** on white — the first gold that clears 4.5:1 |
 | `black` · `black-lift` | `#0B0A09` `#1E1B18` | the icon chips and the `Click here` pills |
@@ -118,8 +117,8 @@ arrives from a QR code on a printed book, so the affordance is spelled out rathe
 than implied; both cues are `aria-hidden`, since the links are already named.
 
 **Both loops are deliberately cheap.** Every forever-running animation on the page
-— the chevrons, the four pill arrows, the two background blooms, the floating
-emblem — moves only `transform` and `opacity`, on small elements, so the work
+— the chevrons, the four pill arrows, the floating emblem — moves only
+`transform` and `opacity`, on small elements, so the work
 lands on the compositor and never triggers layout or paint. Adding the cues left
 mobile at 96 and blocking time at 50–90 ms. `prefers-reduced-motion` stops all of
 them.
@@ -142,10 +141,6 @@ bar from `lg` and closes the page on phones.
 
 Motion is kept for what it is genuinely better at: the spring-damped hover and
 press on the cards.
-
-**The decorative blobs translate but never scale** — rescaling a layer that large
-forces a raster pass every frame, which cost ~3 Lighthouse points and 100 ms of
-blocking time on mobile.
 
 **`prefers-reduced-motion`** is honoured twice over: the CSS block collapses every
 animation, and `MotionConfig reducedMotion="user"` drops Motion's transforms.
