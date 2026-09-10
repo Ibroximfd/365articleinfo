@@ -1,8 +1,8 @@
 # Articles 365 — link in bio
 
 A single-page link hub for the **Articles 365** brand, reached by scanning the QR
-code on the back of the *365 Magazine* book. A bento of warm neutral tiles — four
-destinations plus a contact bar — no dark mode.
+code on the back of the *365 Magazine* book. A bento of warm neutral tiles — a full-width
+masthead, four destinations and a contact bar — no dark mode.
 
 > **Consistency is the key** — one article every day, for 365 days.
 
@@ -58,8 +58,8 @@ app/
   icon.png          favicon (96px, Off White ground so it reads in a tab)
   fonts/            subset woff2 files
 components/articles365/
-  HeroTile.tsx      emblem, kicker, wordmark, slogan                 (server)
-  DaysTile.tsx      the dark tile: 365, and the three points         (server)
+  HeroTile.tsx      emblem, wordmark, the three points, Follow strip (server)
+  ScrollCue.tsx     the animated chevrons pointing at the tiles      (server)
   LinksSection.tsx  the four tiles from LINKS — 2-up, 4-up from lg   (server)
   LinkTile.tsx      one tile; hover/press springs                    (client)
   ContactBar.tsx    the @I365_admin bar                              (server)
@@ -111,9 +111,21 @@ rather than applied.
 
 ## Design notes
 
-**One dark note.** Dark Charcoal appears twice: the `365` tile and the icon chips.
-Brass on charcoal is the palette's strongest pairing, so it carries the promise
-and marks each destination. Everything else stays in the light ladder.
+**One dark note.** Dark Charcoal appears only in the icon chips. Brass on charcoal
+is the palette's strongest pairing, so it marks each destination while everything
+else stays in the light ladder.
+
+**The page is one funnel.** Masthead → `Follow for more` closing the tile → an
+animated chevron → the tiles, each carrying a `Click here` pill. The audience
+arrives from a QR code on a printed book, so the affordance is spelled out rather
+than implied; both cues are `aria-hidden`, since the links are already named.
+
+**Both loops are deliberately cheap.** Every forever-running animation on the page
+— the chevrons, the four pill arrows, the two background blooms, the floating
+emblem — moves only `transform` and `opacity`, on small elements, so the work
+lands on the compositor and never triggers layout or paint. Adding the cues left
+mobile at 96 and blocking time at 50–90 ms. `prefers-reduced-motion` stops all of
+them.
 
 **Contact is a bar, not a fifth tile.** The tiles are the book's media; the handle
 is a person. It gets its own full-width bar under them, with a round chip where

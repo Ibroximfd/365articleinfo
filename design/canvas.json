@@ -6,7 +6,7 @@
       "x": 0,
       "y": 0,
       "w": 1440,
-      "h": 769
+      "h": 940
     },
     {
       "file": "BentoPhone.dc.html",
@@ -14,23 +14,23 @@
       "x": 1560,
       "y": 0,
       "w": 390,
-      "h": 1054
+      "h": 1210
     }
   ],
   "annotations": [
     {
-      "id": "note-palette",
+      "id": "note-a",
       "x": 2050,
       "y": 0,
       "w": 330,
-      "text": "Palitra — rasmdagi beshta rang\n\nOff White F6F4F2 · Warm Grey D3C9BD · Muted Tan AB9E8E · Antique Brass B4986B · Dark Charcoal 423E3B\n\nUyg'unlik qanday qurilgan:\n\n· To'rt havola plitkasi Off White'dan Warm Grey'gacha bosqichma-bosqich o'tadi. Zid ranglar emas — bitta ohangdagi zina. \"Nejniy\" hissi shundan.\n\n· Muted Tan matn foni sifatida emas, ingichka hoshiya va fondagi yumshoq nur sifatida — u Warm Grey bilan Charcoal orasidagi ko'prik.\n\n· Antique Brass faqat aksent: emblema, ikonkalar, \"365\", slogan.\n\n· Dark Charcoal — yagona qattiq nota: \"365 days\" plitkasi va ikonka chiplari."
+      "text": "Bu artbordlar saytdagi kodni aks ettiradi.\n\nBirinchi widget to'liq kenglikda: emblema + so'z belgisi chapda, uch nuqta o'ngda, ingichka chiziq bilan ajratilgan. Pastida \"FOLLOW FOR MORE\" — havolalar nima uchunligini aytadi.\n\nUning ostida qimirlaydigan qo'sh strelka pastga yo'naltiradi.\n\nHar plitkada \"CLICK HERE\" pillasi — strelkasi sekin o'ngga siljib turadi."
     },
     {
-      "id": "note-changes",
+      "id": "note-b",
       "x": 2050,
-      "y": 560,
+      "y": 520,
       "w": 330,
-      "text": "So'rovingiz bo'yicha o'zgargani\n\n· Desktopda ikonkalar 30px glifdan 74×74 chip + 36px glifga o'sdi — endi ular plitkaning asosiy nuqtasi.\n\n· Telefonda 2×2 plitka o'rniga to'liq kenglikdagi qatorlar. Avval sarlavhalar ikki qatorga bo'linib, tavsiflar umuman ko'rinmasdi — endi hammasi o'qiladi.\n\n· Kontrast tekshirildi: eng to'q plitkada ham (Warm Grey) matn 6.5:1, tavsiflar 5.0:1 — WCAG AA dan yuqori."
+      "text": "Animatsiyalar arzon\n\nHammasi faqat transform va opacity — kompozitorda ishlaydi, layout ham, paint ham qo'zg'atmaydi.\n\nO'lchandi: TBT 50-90 ms, mobil Lighthouse 96, desktop 100. Animatsiyalar qo'shilgandan keyin ball tushmadi.\n\nprefers-reduced-motion yoqilgan bo'lsa barcha takrorlanuvchi animatsiya to'xtaydi."
     }
   ],
   "launch": {

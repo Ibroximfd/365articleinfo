@@ -106,13 +106,16 @@ export const CONTACT = {
   hint: "Opens a Telegram chat in a new tab.",
 } as const;
 
+/** Visible affordance on every tile. aria-hidden — the links are already named. */
+export const CTA = "Click here" as const;
+
 /** Hero copy lives beside the links so all page content is edited in one place. */
 export const HERO = {
   kicker: "365 Magazine",
   brand: "Articles 365",
   slogan: "Consistency is the key",
-  count: "365",
-  countLabel: "days",
+  /** Closes the masthead and names what the tiles below are for. */
+  follow: "Follow for more",
   points: [
     "One article every day, for 365 days",
     "A wider view of the world, a page at a time",

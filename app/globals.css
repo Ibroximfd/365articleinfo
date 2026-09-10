@@ -99,6 +99,21 @@
     animation: float 8s ease-in-out 1.1s infinite;
   }
 
+  /* Two cues that run forever, so both are deliberately cheap: a handful of
+     small elements moving on the compositor with transform and opacity, no
+     layout, no paint, no filters. */
+  .cue-chevron {
+    animation: cue 1.9s ease-in-out infinite;
+  }
+
+  .cue-chevron--trail {
+    animation-delay: 0.16s;
+  }
+
+  .cue-arrow {
+    animation: nudge 1.7s ease-in-out infinite;
+  }
+
   /* Radial gradients rather than blur() filters: the same softness with no
      per-frame filter pass, so the drift holds 60fps on the low-end phones
      that scan the QR code. */
@@ -171,6 +186,28 @@
   }
 }
 
+@keyframes cue {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(0, 3.5px, 0);
+  }
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(3px, 0, 0);
+  }
+}
+
 @keyframes drift-a {
   0%,
   100% {
@@ -193,7 +230,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .decor-blob,
-  .float {
+  .float,
+  .cue-chevron,
+  .cue-arrow {
     animation: none !important;
   }
 
