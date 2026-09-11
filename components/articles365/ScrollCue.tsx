@@ -7,7 +7,7 @@ export function ScrollCue() {
   return (
     <div
       aria-hidden
-      className="flex justify-center py-1.5 text-brass-deep sm:py-2.5 lg:col-span-12"
+      className="flex justify-center py-1.5 text-gold sm:py-2.5 lg:col-span-12"
     >
       <svg
         width="38"

@@ -23,14 +23,14 @@
       "x": 2050,
       "y": 0,
       "w": 330,
-      "text": "Bu artbordlar saytdagi kodni aks ettiradi.\n\nBirinchi widget to'liq kenglikda: emblema + so'z belgisi chapda, uch nuqta o'ngda, ingichka chiziq bilan ajratilgan. Pastida \"FOLLOW FOR MORE\" — havolalar nima uchunligini aytadi.\n\nUning ostida qimirlaydigan qo'sh strelka pastga yo'naltiradi.\n\nHar plitkada \"CLICK HERE\" pillasi — strelkasi sekin o'ngga siljib turadi."
+      "text": "Palitra — Night 0B0B0B · Jet 333533 · Eggshell F2ECDD · Saffron F5CB5C · Satin gold CD9C20\n\nQanday qurilgan:\n\n· Ikki to'q rang sahifani qavsga oladi: masthead va aloqa tasmasi Night kartalar. Ular orasida to'rt plitka Saffron → Satin gold zinasida — bitta ohang, to'rt pog'ona.\n\n· Saffron faqat Night ustida: emblema, chip gliflari, kicker, slogan — logoning asl 'qora fonda tilla' ko'rinishi.\n\n· Tilla plitkalarda matn Night va Jet. Tilla ustida tilla yozuv yo'q; Eggshell ustida mayda tilla matn ham yo'q (2.1:1) — u yerda tilla faqat bezak.\n\n· Jet — plitkadagi tavsif matni va chip gradientining yorug' tomoni."
     },
     {
       "id": "note-b",
       "x": 2050,
       "y": 520,
       "w": 330,
-      "text": "Animatsiyalar arzon\n\nHammasi faqat transform va opacity — kompozitorda ishlaydi, layout ham, paint ham qo'zg'atmaydi.\n\nO'lchandi: TBT 50-90 ms, mobil Lighthouse 96, desktop 100. Animatsiyalar qo'shilgandan keyin ball tushmadi.\n\nprefers-reduced-motion yoqilgan bo'lsa barcha takrorlanuvchi animatsiya to'xtaydi."
+      "text": "Kontrast (WCAG AA):\n\n· Saffron / Night — 12.6:1\n· Night / Saffron plitka — 15.8:1\n· Jet / Satin gold (eng to'q plitka) — 4.9:1\n· Jet / Eggshell — 10.4:1\n· Eggshell 70% / Night — 8.2:1\n\nAnimatsiyalar o'zgarmadi: strelka, pillalar, emblema — faqat transform va opacity."
     }
   ],
   "launch": {

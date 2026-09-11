@@ -1,48 +1,50 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Articles 365 — white, gold, black. Light only by design: the page lives
-   behind a QR code on a printed book cover.
+   Articles 365 — Night, Jet, Eggshell, Saffron, Satin gold. Light only by
+   design: the page lives behind a QR code on a printed book cover.
 
-   The gold is the logo's own (#FCBF01), used at two depths: bright on black,
-   where it is the glyph in every chip — the brand's original yellow-on-black —
-   and deepened to #D9A400 for the tiles, the emblem and the rules, where it
-   has to hold against white. Small gold TEXT goes one step further, to
-   #8A6600, which is the first gold that clears 4.5:1 on white. Everything
-   else is near-black; the four link tiles step through four golds, one tonal
-   ladder rather than four fills, so the row still reads as a set.
+   Night #0B0B0B · Jet #333533 · Eggshell #F2ECDD · Saffron #F5CB5C · Gold #CD9C20
+
+   The two dark tones bracket the page: the masthead and the contact bar are
+   Night cards, and between them the four tiles step Saffron → Satin gold —
+   one tonal ladder, not four fills. Saffron on Night is the logo's own
+   yellow-on-black, so it carries the emblem, every chip glyph, the kicker and
+   the slogan. On the gold tiles all text is Night or Jet: gold never sits on
+   gold, and small gold text never sits on Eggshell, where even Satin gold is
+   only 2.1:1 — there it is decoration (the cue, the rules), never a word.
 --------------------------------------------------------------------------- */
 @theme {
-  --color-ground: #ffffff;
-  --color-paper: #ffffff;
+  --color-ground: #f2ecdd;
+  --color-eggshell: #f2ecdd;
+  --color-night: #0b0b0b;
+  --color-jet: #333533;
+  --color-saffron: #f5cb5c;
+  --color-gold: #cd9c20;
 
-  --color-gold-1: #e6b41c;
-  --color-gold-2: #ddaa0e;
-  --color-gold-3: #d3a004;
-  --color-gold-4: #c89600;
+  --color-gold-1: #f5cb5c;
+  --color-gold-2: #ebbf4a;
+  --color-gold-3: #dcaf36;
+  --color-gold-4: #cd9c20;
 
-  --color-brass: #d9a400;
-  --color-gold-bright: #fcbf01;
-  --color-brass-deep: #8a6600;
-
-  --color-black: #0b0a09;
-  --color-black-lift: #1e1b18;
-  --color-ink: #141210;
-  --color-ink-soft: #33302b;
+  --color-ink: #0b0b0b;
+  --color-ink-soft: #333533;
 
   --font-serif: var(--font-dm-serif), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
 
-  --color-hairline: rgba(217, 164, 0, 0.38);
+  --color-hairline: rgba(205, 156, 32, 0.35);
 
-  /* Shadows are tinted with the gold's own dark, never neutral black. */
-  --shadow-tile: inset 0 1px 0 rgb(255 255 255 / 0.55),
-    0 1px 2px rgb(90 65 0 / 0.06), 0 18px 36px -22px rgb(90 65 0 / 0.35);
-  --shadow-tile-hover: inset 0 1px 0 rgb(255 255 255 / 0.7),
-    0 2px 6px rgb(90 65 0 / 0.08), 0 28px 50px -22px rgb(90 65 0 / 0.42);
+  /* Tile shadows carry the gold's own dark; the Night cards cast true black. */
+  --shadow-tile: inset 0 1px 0 rgb(255 255 255 / 0.45),
+    0 1px 2px rgb(90 65 0 / 0.06), 0 18px 36px -22px rgb(90 65 0 / 0.38);
+  --shadow-tile-hover: inset 0 1px 0 rgb(255 255 255 / 0.6),
+    0 2px 6px rgb(90 65 0 / 0.08), 0 28px 50px -22px rgb(90 65 0 / 0.46);
   --shadow-dark: inset 0 1px 0 rgb(255 255 255 / 0.06),
-    0 1px 2px rgb(0 0 0 / 0.2), 0 18px 38px -22px rgb(0 0 0 / 0.55);
+    0 1px 2px rgb(0 0 0 / 0.25), 0 22px 44px -22px rgb(0 0 0 / 0.55);
+  --shadow-dark-hover: inset 0 1px 0 rgb(255 255 255 / 0.09),
+    0 2px 6px rgb(0 0 0 / 0.3), 0 30px 56px -22px rgb(0 0 0 / 0.6);
   --shadow-chip: inset 0 1px 0 rgb(255 255 255 / 0.08),
     0 4px 10px -3px rgb(0 0 0 / 0.55);
 }
@@ -61,12 +63,12 @@
   }
 
   ::selection {
-    background-color: color-mix(in oklab, var(--color-brass) 38%, transparent);
+    background-color: color-mix(in oklab, var(--color-saffron) 55%, transparent);
     color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-brass-deep);
+    outline: 2px solid var(--color-gold);
     outline-offset: 3px;
   }
 }

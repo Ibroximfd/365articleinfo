@@ -9,7 +9,7 @@ export function Footer() {
     >
       <span
         aria-hidden
-        className="h-px w-12 bg-gradient-to-r from-transparent via-brass to-transparent"
+        className="h-px w-12 bg-gradient-to-r from-transparent via-gold to-transparent"
       />
       <p className="text-[0.7rem] tracking-wide text-ink-soft">
         © Articles 365 — Consistency is the key

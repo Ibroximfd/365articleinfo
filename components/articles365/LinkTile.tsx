@@ -6,7 +6,7 @@ import { CTA } from "@/lib/links";
 import type { LinkItem, LinkShade } from "@/lib/links";
 import { LINK_ICONS, PlatformBadge } from "./SocialIcons";
 
-/** The tonal ladder, four golds light to deep. Held here so the tile is the one
+/** The tonal ladder, Saffron to Satin gold. Held here so the tile is the one
  *  place a shade is turned into a class, and Tailwind can see every literal. */
 const SHADES: Record<LinkShade, string> = {
   paper: "bg-gold-1",
@@ -32,7 +32,7 @@ export function LinkTile({ link }: { link: LinkItem }) {
       whileHover={{ y: -5, scale: 1.015 }}
       whileTap={{ scale: 0.985 }}
       transition={{ type: "spring", stiffness: 340, damping: 26 }}
-      className={`group relative flex h-full min-h-[13.5rem] flex-col items-center overflow-hidden rounded-[1.5rem] border border-hairline p-4 text-center shadow-tile transition-[box-shadow,border-color] duration-300 hover:border-black/40 hover:shadow-tile-hover sm:min-h-[15rem] sm:rounded-[1.75rem] sm:p-5 lg:min-h-[17.5rem] lg:p-6 ${SHADES[shade]}`}
+      className={`group relative flex h-full min-h-[13.5rem] flex-col items-center overflow-hidden rounded-[1.5rem] border border-night/10 p-4 text-center shadow-tile transition-[box-shadow,border-color] duration-300 hover:border-night/40 hover:shadow-tile-hover sm:min-h-[15rem] sm:rounded-[1.75rem] sm:p-5 lg:min-h-[17.5rem] lg:p-6 ${SHADES[shade]}`}
     >
       {/* Light sweeps across the tile on hover — the only decorative flourish. */}
       <span
@@ -40,9 +40,9 @@ export function LinkTile({ link }: { link: LinkItem }) {
         className="pointer-events-none absolute inset-0 -translate-x-full bg-[linear-gradient(105deg,transparent_38%,rgb(255_255_255_/_0.45)_50%,transparent_62%)] transition-transform duration-[900ms] ease-out group-hover:translate-x-full"
       />
 
-      {/* Jet-black chip, the logo's gold glyph: centred so each tile reads as its own
+      {/* Night chip, Saffron glyph — the logo's own pairing: centred so each tile reads as its own
           mark rather than a row of corner icons. */}
-      <span className="relative mt-2 grid size-16 shrink-0 place-items-center rounded-[1.25rem] bg-gradient-to-br from-black-lift to-black text-gold-bright shadow-chip ring-1 ring-gold-bright/30 transition-[transform,box-shadow] duration-300 group-hover:scale-[1.06] group-hover:ring-gold-bright/70 sm:mt-3 sm:size-[4.5rem] sm:rounded-[1.4rem] lg:mt-4 lg:size-[5rem] lg:rounded-[1.5rem] xl:size-[5.5rem] xl:rounded-[1.6rem]">
+      <span className="relative mt-2 grid size-16 shrink-0 place-items-center rounded-[1.25rem] bg-gradient-to-br from-jet to-night text-saffron shadow-chip ring-1 ring-saffron/30 transition-[transform,box-shadow] duration-300 group-hover:scale-[1.06] group-hover:ring-saffron/70 sm:mt-3 sm:size-[4.5rem] sm:rounded-[1.4rem] lg:mt-4 lg:size-[5rem] lg:rounded-[1.5rem] xl:size-[5.5rem] xl:rounded-[1.6rem]">
         <Icon className="size-8 sm:size-9 lg:size-10 xl:size-11" strokeWidth={1.6} aria-hidden />
         {badge ? <PlatformBadge platform={badge} /> : null}
       </span>
@@ -65,7 +65,7 @@ export function LinkTile({ link }: { link: LinkItem }) {
             "click here" is the last thing a screen reader needs read to it. */}
         <span
           aria-hidden
-          className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-black px-3 py-1.5 text-[0.63rem] font-semibold tracking-[0.16em] text-gold-bright uppercase shadow-chip transition-[background-color,box-shadow] duration-300 group-hover:bg-black-lift sm:mt-2.5 sm:text-[0.66rem] lg:text-[0.68rem]"
+          className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-night px-3 py-1.5 text-[0.63rem] font-semibold tracking-[0.16em] text-saffron uppercase shadow-chip transition-[background-color,box-shadow] duration-300 group-hover:bg-jet sm:mt-2.5 sm:text-[0.66rem] lg:text-[0.68rem]"
         >
           {CTA}
           <ArrowRight

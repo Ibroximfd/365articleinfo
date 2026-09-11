@@ -1,12 +1,13 @@
 # Articles 365 — link in bio
 
 A single-page link hub for the **Articles 365** brand, reached by scanning the QR
-code on the back of the *365 Magazine* book. A bento in white, gold and black — a full-width
-masthead, four destinations and a contact bar — no dark mode.
+code on the back of the *365 Magazine* book. A bento in Night, Jet, Eggshell, Saffron and Satin
+gold — a full-width masthead, four destinations and a contact bar — no dark mode.
 
-Two palettes live in this repo. `main` is the white / gold / black version; the
-earlier warm-neutral one is kept whole on the `warm-neutral` branch and the
-`v1-warm-neutral` tag — `git switch warm-neutral` brings it back.
+Three palettes live in this repo's history. `main` is the current one; the
+earlier two are pinned as tags — `v1-warm-neutral` (also the `warm-neutral`
+branch) and `v2-gold-black`. `git switch warm-neutral` or
+`git checkout v2-gold-black` brings either back.
 
 > **Consistency is the key** — one article every day, for 365 days.
 
@@ -81,35 +82,33 @@ public/
 
 ## The palette
 
-White, the logo's gold, and black — with the gold at three depths.
+Night, Jet, Eggshell, Saffron, Satin gold.
 
 | Token | Hex | Role |
 |---|---|---|
-| `ground` · `paper` | `#FFFFFF` | the page, the masthead card, the contact bar |
-| `gold-1` … `gold-4` | `#E6B41C` `#DDAA0E` `#D3A004` `#C89600` | the four tile steps, light to deep |
-| `brass` | `#D9A400` | the emblem, rules, hairlines |
-| `gold-bright` | `#FCBF01` | the logo's own gold — every glyph on black |
-| `brass-deep` | `#8A6600` | small gold **text** on white — the first gold that clears 4.5:1 |
-| `black` · `black-lift` | `#0B0A09` `#1E1B18` | the icon chips and the `Click here` pills |
-| `ink` | `#141210` | headings and titles |
-| `ink-soft` | `#33302B` | body copy — 4.9:1 even on the deepest gold |
+| `ground` · `eggshell` | `#F2ECDD` | the page; wordmark and labels on the Night cards |
+| `night` | `#0B0B0B` | the masthead card, the contact bar, chips, pills; titles on gold |
+| `jet` | `#333533` | body copy on gold; the light end of the chip gradient |
+| `saffron` | `#F5CB5C` | everything gold **on Night** — emblem, glyphs, kicker, slogan, handle |
+| `gold` | `#CD9C20` | Satin gold: the cue, rules and hairlines on Eggshell |
+| `gold-1` … `gold-4` | `#F5CB5C` `#EBBF4A` `#DCAF36` `#CD9C20` | the four tile steps, Saffron to Satin gold |
 
-**Gold at three depths, on purpose.** The logo's `#FCBF01` is bright enough to
-live only on black, where it is the glyph in every chip — the brand's original
-yellow-on-black. Against white it drops to `#D9A400` for the emblem and rules,
-and small text drops again to `#8A6600`; anything lighter fails 4.5:1. The four
-tiles step through four golds rather than taking one fill, so the row still reads
-as a set, and the ladder runs diagonally across the phone's 2×2.
+**The dark tones bracket the page.** Masthead and contact bar are Night cards;
+between them the four tiles step Saffron → Satin gold, one tonal ladder rather
+than four fills, so the row reads as a set (and runs diagonally across the
+phone's 2×2). Saffron appears only on Night — the logo's own yellow-on-black —
+where it clears 12.6:1.
 
-**No gold text on gold.** Titles and copy on the tiles are near-black; the pills
-are black with the bright gold, echoing the chips. Shadows are tinted with the
-gold's own dark (`rgb(90 65 0)`), never neutral black.
+**Gold never sits on gold, and small gold text never sits on Eggshell.** Titles
+and copy on the tiles are Night and Jet (Jet is 4.9:1 even on the deepest gold).
+On Eggshell, Satin gold is only 2.1:1, so there it is decoration — the cue, the
+rules — never a word. Tile shadows carry the gold's own dark; the Night cards
+cast true black.
 
 ## Design notes
 
-**Black is the punctuation.** It appears only in the chips and the pills — the
-logo's gold on jet black marks each destination, and everything else is white or
-gold.
+**Night is the frame, not the fill.** It holds the two cards and the chips; the
+gold ladder and the Eggshell ground carry the light between them.
 
 **The page is one funnel.** A centred masthead → `Follow for more` closing the
 tile → an animated chevron → the tiles, each carrying a `Click here` pill. The audience
