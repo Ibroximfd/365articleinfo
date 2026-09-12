@@ -8,13 +8,6 @@ export type LinkPlatform = "telegram" | "instagram";
  */
 export type LinkIconKey = "video" | "audio" | "telegram" | "instagram";
 
-/**
- * The tonal step a tile is painted in. The four run Off White -> Warm Grey;
- * a link keeps its shade across every breakpoint, so the desktop row and the
- * phone's 2x2 read as one system rather than two designs.
- */
-export type LinkShade = "paper" | "linen" | "sand" | "grey";
-
 export interface LinkItem {
   /** Stable key — also the React key and an analytics-friendly slug. */
   id: string;
@@ -25,7 +18,6 @@ export interface LinkItem {
   caption: string;
   href: string;
   icon: LinkIconKey;
-  shade: LinkShade;
   platform: LinkPlatform;
   /**
    * Small platform stamp on the icon chip. Only set it when the chip icon is
@@ -53,7 +45,6 @@ export const LINKS: readonly LinkItem[] = [
     caption: "Step-by-step guide",
     href: "https://t.me/+azN9x8V6lc40NTNi",
     icon: "video",
-    shade: "paper",
     platform: "telegram",
     badge: "telegram",
     hint: "Opens on Telegram in a new tab.",
@@ -65,7 +56,6 @@ export const LINKS: readonly LinkItem[] = [
     caption: "Listen on the move",
     href: "https://t.me/+cZuuurXwBMRlNjYy",
     icon: "audio",
-    shade: "linen",
     platform: "telegram",
     badge: "telegram",
     hint: "Opens on Telegram in a new tab.",
@@ -77,7 +67,6 @@ export const LINKS: readonly LinkItem[] = [
     caption: "@articles365",
     href: "https://t.me/articles365",
     icon: "telegram",
-    shade: "sand",
     platform: "telegram",
     hint: "Opens on Telegram in a new tab.",
   },
@@ -88,7 +77,6 @@ export const LINKS: readonly LinkItem[] = [
     caption: "@365_magazine",
     href: "https://www.instagram.com/365_magazine?stkn=YWFnbzRpbjdqdDc2&utm_source=qr",
     icon: "instagram",
-    shade: "grey",
     platform: "instagram",
     hint: "Opens on Instagram in a new tab.",
   },

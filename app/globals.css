@@ -7,12 +7,13 @@
    Night #0B0B0B · Jet #333533 · Eggshell #F2ECDD · Saffron #F5CB5C · Gold #CD9C20
 
    The two dark tones bracket the page: the masthead and the contact bar are
-   Night cards, and between them the four tiles step Saffron → Satin gold —
-   one tonal ladder, not four fills. Saffron on Night is the logo's own
-   yellow-on-black, so it carries the emblem, every chip glyph, the kicker and
-   the slogan. On the gold tiles all text is Night or Jet: gold never sits on
-   gold, and small gold text never sits on Eggshell, where even Satin gold is
-   only 2.1:1 — there it is decoration (the cue, the rules), never a word.
+   Night cards, and between them the four tiles share one gold fill — the
+   links are peers, so nothing in the row reads as ranked. Saffron on Night is
+   the logo's own yellow-on-black, so it carries the emblem, every chip glyph,
+   the kicker and the slogan. On the gold tiles all text is Night or Jet: gold
+   never sits on gold, and small gold text never sits on Eggshell, where even
+   Satin gold is only 2.1:1 — there it is decoration (the cue, the rules),
+   never a word.
 --------------------------------------------------------------------------- */
 @theme {
   --color-ground: #f2ecdd;
@@ -22,10 +23,8 @@
   --color-saffron: #f5cb5c;
   --color-gold: #cd9c20;
 
-  --color-gold-1: #f5cb5c;
-  --color-gold-2: #ebbf4a;
-  --color-gold-3: #dcaf36;
-  --color-gold-4: #cd9c20;
+  /* The single fill every link tile is painted in. */
+  --color-tile: #dcaf36;
 
   --color-ink: #0b0b0b;
   --color-ink-soft: #333533;

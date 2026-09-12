@@ -3,17 +3,8 @@
 import { ArrowRight } from "lucide-react";
 import { m } from "motion/react";
 import { CTA } from "@/lib/links";
-import type { LinkItem, LinkShade } from "@/lib/links";
+import type { LinkItem } from "@/lib/links";
 import { LINK_ICONS, PlatformBadge } from "./SocialIcons";
-
-/** The tonal ladder, Saffron to Satin gold. Held here so the tile is the one
- *  place a shade is turned into a class, and Tailwind can see every literal. */
-const SHADES: Record<LinkShade, string> = {
-  paper: "bg-gold-1",
-  linen: "bg-gold-2",
-  sand: "bg-gold-3",
-  grey: "bg-gold-4",
-};
 
 /**
  * The only client component on the page. Motion is here for what it is good
@@ -21,7 +12,7 @@ const SHADES: Record<LinkShade, string> = {
  * <li>, so nothing above the fold waits for hydration to become visible.
  */
 export function LinkTile({ link }: { link: LinkItem }) {
-  const { href, title, description, caption, badge, hint, shade } = link;
+  const { href, title, description, caption, badge, hint } = link;
   const Icon = LINK_ICONS[link.icon];
 
   return (
@@ -32,7 +23,7 @@ export function LinkTile({ link }: { link: LinkItem }) {
       whileHover={{ y: -5, scale: 1.015 }}
       whileTap={{ scale: 0.985 }}
       transition={{ type: "spring", stiffness: 340, damping: 26 }}
-      className={`group relative flex h-full min-h-[13.5rem] flex-col items-center overflow-hidden rounded-[1.5rem] border border-night/10 p-4 text-center shadow-tile transition-[box-shadow,border-color] duration-300 hover:border-night/40 hover:shadow-tile-hover sm:min-h-[15rem] sm:rounded-[1.75rem] sm:p-5 lg:min-h-[17.5rem] lg:p-6 ${SHADES[shade]}`}
+      className="group relative flex h-full min-h-[13.5rem] flex-col items-center overflow-hidden rounded-[1.5rem] bg-tile border border-night/10 p-4 text-center shadow-tile transition-[box-shadow,border-color] duration-300 hover:border-night/40 hover:shadow-tile-hover sm:min-h-[15rem] sm:rounded-[1.75rem] sm:p-5 lg:min-h-[17.5rem] lg:p-6"
     >
       {/* Light sweeps across the tile on hover — the only decorative flourish. */}
       <span
